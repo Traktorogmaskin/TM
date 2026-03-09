@@ -9,39 +9,91 @@
 
 <style>
 body{
-font-family:Arial;
-background:#f4f6f8;
-padding:40px;
-text-align:center;
+  font-family:Arial, sans-serif;
+  background:#f4f6f8;
+  padding:40px;
+  text-align:center;
+  margin:0;
 }
 
 .box{
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.1);
-max-width:500px;
-margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.1);
+  max-width:700px;
+  margin:auto;
+}
+
+h2{
+  margin-top:0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:20px;
+}
+
+.field{
+  text-align:left;
+}
+
+.field.full{
+  grid-column:1 / -1;
+}
+
+label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+input,
+select{
+  width:100%;
+  padding:10px;
+  font-size:16px;
+  box-sizing:border-box;
 }
 
 button{
-padding:12px 20px;
-font-size:16px;
-border:none;
-background:#2c7be5;
-color:white;
-border-radius:6px;
-cursor:pointer;
+  padding:12px 20px;
+  font-size:16px;
+  border:none;
+  background:#2c7be5;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
 }
 
 button:hover{
-background:#1a5fcc;
+  background:#1a5fcc;
 }
 
-input{
-width:100%;
-padding:10px;
-margin:10px 0;
+.actions{
+  margin-top:20px;
+}
+
+.hint{
+  margin-top:16px;
+  color:#555;
+  font-size:14px;
+  line-height:1.5;
+  text-align:left;
+}
+
+.status{
+  margin-top:16px;
+  font-size:14px;
+  color:#333;
+}
+
+@media (max-width:700px){
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -49,59 +101,213 @@ margin:10px 0;
 <body>
 
 <div class="box">
+  <h2>Legg QR-kode på PDF</h2>
 
-<h2>Legg QR-kode på PDF</h2>
+  <div class="grid">
+    <div class="field full">
+      <label for="pdfFile">PDF-fil</label>
+      <input type="file" id="pdfFile" accept="application/pdf">
+    </div>
 
-<input type="file" id="pdfFile" accept="application/pdf">
+    <div class="field full">
+      <label for="url">Lenke i QR-koden</label>
+      <input type="text" id="url" value="https://www.traktorogmaskin.no">
+    </div>
 
-<input type="text" id="url" value="https://www.traktorogmaskin.no">
+    <div class="field">
+      <label for="preset">Plassering</label>
+      <select id="preset">
+        <option value="supplier">Din totalleverandør</option>
+        <option value="bottom-left">Nederst venstre</option>
+        <option value="bottom-right">Nederst høyre</option>
+        <option value="top-left">Øverst venstre</option>
+        <option value="top-right">Øverst høyre</option>
+        <option value="custom">Egendefinert</option>
+      </select>
+    </div>
 
-<button onclick="leggTilQR()">Lag ny PDF</button>
+    <div class="field">
+      <label for="applyMode">Legg på</label>
+      <select id="applyMode">
+        <option value="first">Kun første side</option>
+        <option value="all">Alle sider</option>
+      </select>
+    </div>
 
+    <div class="field">
+      <label for="size">Størrelse (pt)</label>
+      <input type="number" id="size" value="95" min="40" max="220" step="1">
+    </div>
+
+    <div class="field">
+      <label for="margin">Margin (pt)</label>
+      <input type="number" id="margin" value="20" min="0" max="100" step="1">
+    </div>
+
+    <div class="field">
+      <label for="x">X-posisjon (kun egendefinert)</label>
+      <input type="number" id="x" value="40" min="0" max="2000" step="1">
+    </div>
+
+    <div class="field">
+      <label for="y">Y-posisjon (kun egendefinert)</label>
+      <input type="number" id="y" value="40" min="0" max="2000" step="1">
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="leggTilQR()">Lag ny PDF</button>
+  </div>
+
+  <div class="hint">
+    Tips: Start med preset <strong>Din totalleverandør</strong>.  
+    Hvis plasseringen ikke blir helt riktig på alle PDF-er, velg <strong>Egendefinert</strong> og juster X/Y.
+  </div>
+
+  <div class="status" id="status"></div>
 </div>
 
 <script>
+function setStatus(message){
+  document.getElementById("status").textContent = message;
+}
+
+function clamp(value, min, max){
+  return Math.min(max, Math.max(min, value));
+}
+
+function normalizeUrl(value){
+  const raw = String(value || "").trim();
+  if (!raw) {
+    return "";
+  }
+  if (/^https?:\/\//i.test(raw)) {
+    return raw;
+  }
+  return `https://${raw}`;
+}
+
+function getPlacement(page, preset, size, margin, customX, customY){
+  const pageWidth = page.getWidth();
+  const pageHeight = page.getHeight();
+
+  if (preset === "custom") {
+    return {
+      x: clamp(customX, 0, Math.max(0, pageWidth - size)),
+      y: clamp(customY, 0, Math.max(0, pageHeight - size))
+    };
+  }
+
+  if (preset === "supplier") {
+    return {
+      x: pageWidth * 0.09,
+      y: pageHeight * 0.085
+    };
+  }
+
+  if (preset === "bottom-left") {
+    return {
+      x: margin,
+      y: margin
+    };
+  }
+
+  if (preset === "bottom-right") {
+    return {
+      x: pageWidth - size - margin,
+      y: margin
+    };
+  }
+
+  if (preset === "top-left") {
+    return {
+      x: margin,
+      y: pageHeight - size - margin
+    };
+  }
+
+  return {
+    x: pageWidth - size - margin,
+    y: pageHeight - size - margin
+  };
+}
+
+async function createQrDataUrl(url, size){
+  const canvas = document.createElement("canvas");
+  await QRCode.toCanvas(canvas, url, {
+    width: size,
+    margin: 1
+  });
+  return canvas.toDataURL("image/png");
+}
 
 async function leggTilQR(){
+  try {
+    const file = document.getElementById("pdfFile").files[0];
+    const url = normalizeUrl(document.getElementById("url").value);
+    const preset = document.getElementById("preset").value;
+    const applyMode = document.getElementById("applyMode").value;
+    const size = Number(document.getElementById("size").value);
+    const margin = Number(document.getElementById("margin").value);
+    const customX = Number(document.getElementById("x").value);
+    const customY = Number(document.getElementById("y").value);
 
-const fileInput = document.getElementById('pdfFile').files[0];
-const url = document.getElementById('url').value;
+    if (!file) {
+      alert("Velg en PDF først.");
+      return;
+    }
 
-if(!fileInput){
-alert("Velg en PDF først");
-return;
+    if (!url) {
+      alert("Skriv inn en gyldig lenke.");
+      return;
+    }
+
+    if (!Number.isFinite(size) || size < 40 || size > 220) {
+      alert("Størrelse må være mellom 40 og 220.");
+      return;
+    }
+
+    if (!Number.isFinite(margin) || margin < 0 || margin > 100) {
+      alert("Margin må være mellom 0 og 100.");
+      return;
+    }
+
+    setStatus("Behandler PDF...");
+
+    const pdfBytes = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+    const pages = pdfDoc.getPages();
+    const targetPages = applyMode === "first" ? [pages[0]] : pages;
+
+    const qrDataUrl = await createQrDataUrl(url, size * 4);
+    const qrImage = await pdfDoc.embedPng(qrDataUrl);
+
+    for (const page of targetPages) {
+      const placement = getPlacement(page, preset, size, margin, customX, customY);
+
+      page.drawImage(qrImage, {
+        x: placement.x,
+        y: placement.y,
+        width: size,
+        height: size
+      });
+    }
+
+    const newPdf = await pdfDoc.save();
+    const blob = new Blob([newPdf], { type:"application/pdf" });
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = "pdf-med-qr.pdf";
+    link.click();
+
+    setStatus("Ferdig. Ny PDF er lastet ned.");
+  } catch (error) {
+    console.error(error);
+    setStatus("Noe gikk galt. Prøv igjen.");
+    alert("Kunne ikke lage ny PDF.");
+  }
 }
-
-const pdfBytes = await fileInput.arrayBuffer();
-const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
-
-const pages = pdfDoc.getPages();
-const firstPage = pages[0];
-
-const qrCanvas = document.createElement("canvas");
-
-await QRCode.toCanvas(qrCanvas, url, { width:150 });
-
-const qrImage = await pdfDoc.embedPng(qrCanvas.toDataURL());
-
-firstPage.drawImage(qrImage,{
-x:50,
-y:50,
-width:120,
-height:120
-});
-
-const newPdf = await pdfDoc.save();
-
-const blob = new Blob([newPdf], {type:"application/pdf"});
-const link = document.createElement("a");
-
-link.href = URL.createObjectURL(blob);
-link.download = "pdf-med-qr.pdf";
-link.click();
-
-}
-
 </script>
 
 </body>
