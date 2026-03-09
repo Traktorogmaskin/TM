@@ -53,7 +53,8 @@
       align-items: start;
     }
 
-    .panel {
+    .panel,
+    .preview-panel {
       background: white;
       border-radius: 14px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -193,14 +194,6 @@
       min-height: 24px;
       font-size: 14px;
       color: #374151;
-    }
-
-    .preview-panel {
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      padding: 18px;
-      overflow: auto;
     }
 
     .preview-header {
@@ -624,7 +617,6 @@
 
       const text = elements.qrText.value.trim();
       const fontSize = getLabelSize();
-
       return {
         width: Math.max(40, measureTextWidth(text, fontSize) + 14),
         height: fontSize + 14
