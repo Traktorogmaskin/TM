@@ -4,325 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JobHub</title>
-
-  <style>
-    :root {
-      --bg: #f4f6f8;
-      --panel: #ffffff;
-      --text: #111827;
-      --muted: #6b7280;
-      --border: #dbe2ea;
-      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-      --shadow-hover: 0 14px 28px rgba(15, 23, 42, 0.12);
-      --accent: #1f2937;
-      --accent-soft: #e5e7eb;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .page {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 32px 24px 48px;
-    }
-
-    .hero {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 32px;
-      margin-bottom: 28px;
-    }
-
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: bold;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .brand-mark {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: var(--accent);
-      flex: 0 0 auto;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: 42px;
-      line-height: 1.05;
-    }
-
-    .hero-text {
-      max-width: 760px;
-    }
-
-    .hero-text p {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
-    .hero-side {
-      min-width: 240px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .hero-side-title {
-      margin: 0 0 8px;
-      font-size: 14px;
-      font-weight: bold;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .hero-side p {
-      margin: 0;
-      line-height: 1.45;
-      font-size: 15px;
-    }
-
-    .section {
-      margin-top: 26px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 12px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-
-    .section-header h2 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    .section-header p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 150px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-      border-color: #c7d2de;
-    }
-
-    .card-kicker {
-      display: inline-flex;
-      align-self: flex-start;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #374151;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .card-title {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.15;
-    }
-
-    .card-desc {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: 15px;
-    }
-
-    .footer-note {
-      margin-top: 34px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .locked {
-      display: none;
-    }
-
-    @media (max-width: 760px) {
-      .page {
-        padding: 18px 14px 28px;
-      }
-
-      .hero {
-        padding: 22px;
-      }
-
-      h1 {
-        font-size: 34px;
-      }
-
-      .hero-text p {
-        font-size: 16px;
-      }
-
-      .card {
-        min-height: 132px;
-      }
-    }
-  </style>
+  <meta
+    name="description"
+    content="JobHub samler praktiske arbeidsverktøy, generatorer og kalkulatorer på ett sted."
+  />
 </head>
 <body>
-  <script>
-    (function () {
-      const kode = prompt("Skriv inn tilgangskode for JobHub");
+  <header>
+    <p>Internt arbeidsverktøy</p>
+    <h1>JobHub</h1>
+    <p>Praktiske verktøy for arbeidshverdagen samlet på ett sted.</p>
+  </header>
 
-      if (kode !== "4619") {
-        document.body.innerHTML = `
-          <div style="min-height:100vh;display:grid;place-items:center;background:#f4f6f8;font-family:Arial,sans-serif;padding:24px;">
-            <div style="background:#ffffff;border:1px solid #dbe2ea;border-radius:16px;box-shadow:0 8px 24px rgba(15,23,42,0.08);padding:32px;max-width:420px;width:100%;text-align:center;">
-              <h2 style="margin:0 0 10px;font-size:30px;color:#111827;">Ingen tilgang</h2>
-              <p style="margin:0;color:#6b7280;line-height:1.5;">Feil kode. Lukk siden og prøv igjen.</p>
-            </div>
-          </div>
-        `;
-        throw new Error("Tilgang nektet");
-      }
-    })();
-  </script>
-
-  <div class="page">
-    <header class="hero">
-      <div class="hero-top">
-        <div class="hero-text">
-          <div class="brand">
-            <span class="brand-mark"></span>
-            <span>Internt arbeidsverktøy</span>
-          </div>
-
-          <h1>JobHub</h1>
-          <p>
-            Samlet tilgang til praktiske verktøy for arbeidshverdagen. Generatorer,
-            kalkulatorer og hjelpeverktøy på ett sted.
-          </p>
-        </div>
-
-        <aside class="hero-side">
-          <div class="hero-side-title">Bruk</div>
-          <p>
-            Velg verktøyet du trenger og gå rett til oppgaven. Nye moduler legges inn
-            fortløpende under samme struktur.
-          </p>
-        </aside>
-      </div>
-    </header>
-
-    <section class="section">
-      <div class="section-header">
-        <h2>Generatorer og dokumentverktøy</h2>
-        <p>Verktøy for oppretting, konvertering og utskrift</p>
-      </div>
-
-      <div class="grid">
-        <a class="card" href="https://traktorogmaskin.github.io/PDF-til-JPG/">
-          <span class="card-kicker">Filverktøy</span>
-          <h3 class="card-title">PDF → JPG</h3>
-          <p class="card-desc">Konverter PDF til bildefiler for videre bruk og deling.</p>
-        </a>
-
-        <a class="card" href="https://traktorogmaskin.github.io/AVIF-til-JPG-generator/">
-          <span class="card-kicker">Filverktøy</span>
-          <h3 class="card-title">AVIF → JPG</h3>
-          <p class="card-desc">Konverter AVIF-bilder til JPG i et enklere arbeidsformat.</p>
-        </a>
-
-        <a class="card" href="https://traktorogmaskin.github.io/Produktark/">
-          <span class="card-kicker">Dokument</span>
-          <h3 class="card-title">Produktark</h3>
-          <p class="card-desc">Lag produktark og salgsunderlag i ferdig format.</p>
-        </a>
-
-        <a class="card" href="https://traktorogmaskin.github.io/Jobbhub/qr-pdf.html">
-          <span class="card-kicker">Dokument</span>
-          <h3 class="card-title">QR → PDF</h3>
-          <p class="card-desc">Lag QR-baserte PDF-er for utskrift, deling og oppfølging.</p>
-        </a>
-      </div>
+  <main>
+    <section aria-labelledby="oversikt-tittel">
+      <h2 id="oversikt-tittel">Oversikt</h2>
+      <p>
+        JobHub er startsiden for interne arbeidsverktøy, generatorer, kalkulatorer
+        og dokumentverktøy. Målet er rask tilgang, enkel bruk og en felles struktur
+        for videre påbygging.
+      </p>
     </section>
 
-    <section class="section">
-      <div class="section-header">
-        <h2>Kalkulatorer</h2>
-        <p>Verktøy for raske vurderinger og beregninger</p>
-      </div>
-
-      <div class="grid">
-        <a class="card" href="https://traktorogmaskin.github.io/tilhengerkalkulator/">
-          <span class="card-kicker">Kalkulator</span>
-          <h3 class="card-title">Tilhengerkalkulator</h3>
-          <p class="card-desc">Beregn og vurder tilhengerbehov i et eget arbeidsverktøy.</p>
-        </a>
-
-        <a class="card" href="https://traktorogmaskin.github.io/leasingkalkulator/">
-          <span class="card-kicker">Kalkulator</span>
-          <h3 class="card-title">Leasingkalkulator</h3>
-          <p class="card-desc">Veiledende leasingberegning med rask tilgang til resultat.</p>
-        </a>
-      </div>
+    <section aria-labelledby="hurtigvalg-tittel">
+      <h2 id="hurtigvalg-tittel">Hurtigvalg</h2>
+      <nav aria-label="Hurtigvalg">
+        <ul>
+          <li><a href="https://traktorogmaskin.github.io/PDF-til-JPG/">PDF → JPG</a></li>
+          <li><a href="https://traktorogmaskin.github.io/AVIF-til-JPG-generator/">AVIF → JPG</a></li>
+          <li><a href="https://traktorogmaskin.github.io/Produktark/">Produktark</a></li>
+          <li><a href="https://traktorogmaskin.github.io/tilhengerkalkulator/">Tilhengerkalkulator</a></li>
+          <li><a href="https://traktorogmaskin.github.io/leasingkalkulator/">Leasingkalkulator</a></li>
+          <li><a href="https://traktorogmaskin.github.io/Jobbhub/qr-pdf.html">QR → PDF</a></li>
+        </ul>
+      </nav>
     </section>
 
-    <p class="footer-note">JobHub samler arbeidsverktøy på ett sted.</p>
-  </div>
+    <section aria-labelledby="verktøy-tittel">
+      <h2 id="verktøy-tittel">Verktøyområder</h2>
+
+      <details open>
+        <summary>Generatorer og dokumentverktøy</summary>
+        <article>
+          <h3>PDF → JPG</h3>
+          <p>Konverter PDF til JPG for videre bruk, deling og dokumentflyt.</p>
+          <p><a href="https://traktorogmaskin.github.io/PDF-til-JPG/">Åpne verktøy</a></p>
+        </article>
+
+        <article>
+          <h3>AVIF → JPG</h3>
+          <p>Konverter AVIF-bilder til et enklere arbeidsformat.</p>
+          <p><a href="https://traktorogmaskin.github.io/AVIF-til-JPG-generator/">Åpne verktøy</a></p>
+        </article>
+
+        <article>
+          <h3>Produktark</h3>
+          <p>Lag produktark og salgsmateriell i etablert format.</p>
+          <p><a href="https://traktorogmaskin.github.io/Produktark/">Åpne verktøy</a></p>
+        </article>
+
+        <article>
+          <h3>QR → PDF</h3>
+          <p>Lag QR-baserte dokumenter for utskrift og videre bruk.</p>
+          <p><a href="https://traktorogmaskin.github.io/Jobbhub/qr-pdf.html">Åpne verktøy</a></p>
+        </article>
+      </details>
+
+      <details open>
+        <summary>Kalkulatorer</summary>
+        <article>
+          <h3>Tilhengerkalkulator</h3>
+          <p>Veiledende beregning og vurdering av tilhengerbehov.</p>
+          <p><a href="https://traktorogmaskin.github.io/tilhengerkalkulator/">Åpne verktøy</a></p>
+        </article>
+
+        <article>
+          <h3>Leasingkalkulator</h3>
+          <p>Veiledende leasingberegning med eksisterende oppsett.</p>
+          <p><a href="https://traktorogmaskin.github.io/leasingkalkulator/">Åpne verktøy</a></p>
+        </article>
+      </details>
+
+      <details>
+        <summary>Nye moduler</summary>
+        <article>
+          <h3>Etikettstudio</h3>
+          <p>
+            Ny modul for etiketter, statusmerking, strekkoder og relaterte
+            hjelpefunksjoner.
+          </p>
+          <p>Under utvikling.</p>
+        </article>
+
+        <article>
+          <h3>Flere verktøy</h3>
+          <p>
+            JobHub bygges videre modul for modul med felles struktur og tydelig rød tråd.
+          </p>
+        </article>
+      </details>
+    </section>
+
+    <section aria-labelledby="arbeidsflyt-tittel">
+      <h2 id="arbeidsflyt-tittel">Arbeidsflyt</h2>
+      <ol>
+        <li>Velg verktøyområde.</li>
+        <li>Åpne riktig verktøy.</li>
+        <li>Utfør oppgaven.</li>
+        <li>Gå tilbake til JobHub for neste arbeidssteg.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="prinsipper-tittel">
+      <h2 id="prinsipper-tittel">Grunnprinsipper</h2>
+      <ul>
+        <li>Enkel og naturlig bruk.</li>
+        <li>Praktiske verktøy for arbeidshverdagen.</li>
+        <li>Minst mulig støy og unødvendige steg.</li>
+        <li>Lik struktur for nye moduler.</li>
+        <li>Klart skille mellom stabile verktøy og nye moduler.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>JobHub samler arbeidsverktøy på ett sted.</p>
+  </footer>
 </body>
 </html>
