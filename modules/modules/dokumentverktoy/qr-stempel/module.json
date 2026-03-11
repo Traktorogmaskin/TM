@@ -1,0 +1,20 @@
+{
+  "id": "qr-stempel",
+  "name": "QR-stempel",
+  "category": "dokumentverktoy",
+  "status": "under utvikling",
+  "version": "1.0.0",
+  "description": "Legg QR-kode med liten tekst på dokumentgrunnlag, med eksport og videre modulstøtte.",
+  "entry": "qr.html",
+  "icon": "QR",
+  "visible": true,
+  "featured": true,
+  "supports": {
+    "input": ["pdf", "png", "jpg", "jpeg", "project-json"],
+    "output": ["pdf", "png", "jpg", "svg", "project-json"]
+  },
+  "integrations": {
+    "incoming": ["pdf-til-jpg", "andre dokumentmoduler"],
+    "outgoing": ["pdf-til-jpg", "png-jpg-flyt", "andre dokumentmoduler"]
+  }
+}
