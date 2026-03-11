@@ -1,383 +1,313 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JobHub</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta
-    name="description"
-    content="JobHub samler praktiske arbeidsverktøy, generatorer, kalkulatorer og dokumentmoduler på ett sted."
-  />
-  <meta name="application-name" content="JobHub" />
-  <meta name="theme-color" content="#f2633d" />
+<title>JobHub</title>
 
-  <meta property="og:title" content="JobHub" />
-  <meta
-    property="og:description"
-    content="Baseplattform for praktiske arbeidsverktøy, dokumentmoduler og kalkulatorer."
-  />
-  <meta property="og:type" content="website" />
+<meta name="description" content="JobHub samler praktiske arbeidsverktøy, generatorer, kalkulatorer og dokumentmoduler på ett sted." />
+<meta name="application-name" content="JobHub" />
+<meta name="theme-color" content="#f2633d" />
 
-  <link rel="canonical" href="https://traktorogmaskin.github.io/JobHub/" />
-  <link rel="stylesheet" href="css/index.css">
+<meta property="og:title" content="JobHub" />
+<meta property="og:description" content="Baseplattform for praktiske arbeidsverktøy, dokumentmoduler og kalkulatorer." />
+<meta property="og:type" content="website" />
+
+<link rel="canonical" href="https://traktorogmaskin.github.io/JobHub/" />
+<link rel="stylesheet" href="css/index.css" />
+
 </head>
+
 <body data-app="jobhub" data-layout="platform" data-user-state="guest">
-  <a href="#main-content">Hopp til innhold</a>
 
-  <div id="app-shell" data-shell="jobhub">
-    <header id="global-header" aria-label="Global toppbar">
-      <div id="brand-area">
-        <p id="brand-eyebrow">Internt verktøy · JobHub</p>
-        <h1 id="brand-title">JobHub</h1>
-        <p id="brand-description">
-          Baseplattform for praktiske arbeidsverktøy, moduler og arbeidsflyt.
-        </p>
-      </div>
+<a href="#main-content">Hopp til innhold</a>
 
-      <div id="global-tools" aria-label="Globale verktøy">
-        <form id="global-search-form" role="search" aria-label="Globalt søk">
-          <label for="global-search-input">Søk</label>
-          <input
-            type="search"
-            id="global-search-input"
-            name="q"
-            placeholder="Søk etter verktøy, oppgaver eller innhold"
-            autocomplete="off"
-          />
-          <button type="submit">Søk</button>
-        </form>
+<div id="app-shell">
 
-        <div id="user-area" aria-label="Brukerområde">
-          <button type="button" id="open-command-palette-btn" aria-haspopup="dialog">
-            Hurtigvalg
-          </button>
-          <button type="button" id="open-notifications-btn" aria-haspopup="dialog">
-            Varsler
-          </button>
-          <button type="button" id="open-user-menu-btn" aria-haspopup="menu">
-            Konto
-          </button>
-        </div>
-      </div>
-    </header>
+<header id="global-header">
 
-    <div id="platform-layout">
-      <aside id="sidebar" aria-label="JobHub navigasjon">
-        <nav id="primary-navigation" aria-label="Primærnavigasjon">
-          <h2>Navigasjon</h2>
-          <ul>
-            <li><a href="index.html" aria-current="page">Startside</a></li>
-            <li><a href="#mine-moduler">Mine moduler</a></li>
-            <li><a href="#moduloversikt">Moduloversikt</a></li>
-            <li><a href="#dokumentverktoy">Dokumentverktøy</a></li>
-            <li><a href="#generatorer">Generatorer</a></li>
-            <li><a href="#kalkulatorer">Kalkulatorer</a></li>
-            <li><a href="#oppgaver">Oppgaver</a></li>
-            <li><a href="#arbeidsflyt">Arbeidsflyt</a></li>
-            <li><a href="#grunnprinsipper">Grunnprinsipper</a></li>
-          </ul>
-        </nav>
+<div id="brand-area">
+<p id="brand-eyebrow">Internt verktøy · JobHub</p>
+<h1 id="brand-title">JobHub</h1>
+<p id="brand-description">
+Baseplattform for praktiske arbeidsverktøy, moduler og arbeidsflyt.
+</p>
+</div>
 
-        <section id="workspace-switcher" aria-labelledby="workspace-switcher-title">
-          <h2 id="workspace-switcher-title">Arbeidsområde</h2>
-          <p>Standard arbeidsområde</p>
-          <button type="button">Bytt arbeidsområde</button>
-        </section>
+<div id="global-tools">
 
-        <section id="module-status-overview" aria-labelledby="module-status-title">
-          <h2 id="module-status-title">Status</h2>
-          <ul>
-            <li>Stabile moduler</li>
-            <li>Beta / under utvikling</li>
-            <li>Kommende moduler</li>
-          </ul>
-        </section>
-      </aside>
+<form id="global-search-form" role="search">
+<label for="global-search-input">Søk</label>
 
-      <main id="main-content">
-        <section id="platform-intro" aria-labelledby="platform-intro-title">
-          <header>
-            <h2 id="platform-intro-title">JobHub som baseplattform</h2>
-            <p>
-              JobHub er inngangsporten til interne verktøy, dokumentmoduler,
-              generatorer og kalkulatorer. Målet er én felles struktur som gjør
-              det enkelt å forstå, enkelt å bruke og enkelt å bygge videre på.
-            </p>
-          </header>
+<input
+type="search"
+id="global-search-input"
+name="q"
+placeholder="Søk etter verktøy eller oppgaver"
+autocomplete="off"
+/>
 
-          <div id="platform-intro-actions" aria-label="Hurtighandlinger">
-            <a href="#mine-moduler">Gå til mine moduler</a>
-            <a href="#moduloversikt">Se moduloversikt</a>
-            <a href="#arbeidsflyt">Se arbeidsflyt</a>
-          </div>
-        </section>
+<button type="submit">Søk</button>
 
-        <section id="mine-moduler" aria-labelledby="mine-moduler-title">
-          <header>
-            <h2 id="mine-moduler-title">Mine moduler</h2>
-            <p>
-              Dette området skal senere vise moduler som er aktivert for innlogget bruker.
-            </p>
-          </header>
+</form>
 
-          <div id="mine-moduler-grid" data-collection="user-modules">
-            <article
-              data-module="produktark"
-              data-status="stabil"
-              data-feature="produktark"
-            >
-              <header>
-                <p>Dokumentverktøy</p>
-                <h3>Produktark</h3>
-              </header>
-              <p>Lag produktark og salgsmateriell i etablert format.</p>
-              <p>Status: Stabil</p>
-              <p><a href="https://traktorogmaskin.github.io/Produktark/">Åpne modul</a></p>
-            </article>
+<div id="user-area">
 
-            <article
-              data-module="tilhengerkalkulator"
-              data-status="stabil"
-              data-feature="tilhengerkalkulator"
-            >
-              <header>
-                <p>Kalkulator</p>
-                <h3>Tilhengerkalkulator</h3>
-              </header>
-              <p>Veiledende beregning og vurdering av tilhengerbehov.</p>
-              <p>Status: Stabil</p>
-              <p><a href="https://traktorogmaskin.github.io/tilhengerkalkulator/">Åpne modul</a></p>
-            </article>
+<button type="button">
+Hurtigvalg
+</button>
 
-            <article
-              data-module="leasingkalkulator"
-              data-status="stabil"
-              data-feature="leasingkalkulator"
-            >
-              <header>
-                <p>Kalkulator</p>
-                <h3>Leasingkalkulator</h3>
-              </header>
-              <p>Veiledende leasingberegning med etablert oppsett.</p>
-              <p>Status: Stabil</p>
-              <p><a href="https://traktorogmaskin.github.io/leasingkalkulator/">Åpne modul</a></p>
-            </article>
-          </div>
-        </section>
+<button type="button">
+Varsler
+</button>
 
-        <section id="moduloversikt" aria-labelledby="moduloversikt-title">
-          <header>
-            <h2 id="moduloversikt-title">Moduloversikt</h2>
-            <p>
-              Felles oversikt over tilgjengelige, kommende og eksperimentelle moduler i JobHub.
-            </p>
-          </header>
+<button type="button">
+Konto
+</button>
 
-          <div id="module-category-grid">
-            <section id="dokumentverktoy" aria-labelledby="dokumentverktoy-title">
-              <h3 id="dokumentverktoy-title">Dokumentverktøy</h3>
+</div>
+</div>
 
-              <article
-                data-module="produktark"
-                data-status="stabil"
-                data-feature="produktark"
-              >
-                <header>
-                  <p>Stabil</p>
-                  <h4>Produktark</h4>
-                </header>
-                <p>Lag produktark og salgsmateriell i fast struktur.</p>
-                <p><a href="https://traktorogmaskin.github.io/Produktark/">Åpne modul</a></p>
-              </article>
+</header>
 
-              <article
-                data-module="motereferat-generator"
-                data-status="planlagt"
-                data-feature="motereferat"
-              >
-                <header>
-                  <p>Planlagt</p>
-                  <h4>Møtereferat generator</h4>
-                </header>
-                <p>Strukturert referatmodul med faste oppsummeringsfelt og oppgavelogg.</p>
-                <p>Kommer som egen modul.</p>
-              </article>
+<div id="platform-layout">
 
-              <article
-                data-module="qr-pdf"
-                data-status="stabil"
-                data-feature="qr-pdf"
-              >
-                <header>
-                  <p>Stabil</p>
-                  <h4>QR → PDF</h4>
-                </header>
-                <p>Lag QR-baserte dokumenter for utskrift og videre bruk.</p>
-                <p><a href="https://traktorogmaskin.github.io/JobHub/qr-pdf.html">Åpne modul</a></p>
-              </article>
-            </section>
+<aside id="sidebar">
 
-            <section id="generatorer" aria-labelledby="generatorer-title">
-              <h3 id="generatorer-title">Generatorer</h3>
+<nav id="primary-navigation">
 
-              <article
-                data-module="pdf-til-jpg"
-                data-status="stabil"
-                data-feature="pdf-til-jpg"
-              >
-                <header>
-                  <p>Stabil</p>
-                  <h4>PDF → JPG</h4>
-                </header>
-                <p>Konverter PDF til JPG for videre bruk, deling og dokumentflyt.</p>
-                <p><a href="https://traktorogmaskin.github.io/PDF-til-JPG/">Åpne modul</a></p>
-              </article>
+<h2>Navigasjon</h2>
 
-              <article
-                data-module="avif-til-jpg"
-                data-status="stabil"
-                data-feature="avif-til-jpg"
-              >
-                <header>
-                  <p>Stabil</p>
-                  <h4>AVIF → JPG</h4>
-                </header>
-                <p>Konverter AVIF-bilder til et enklere arbeidsformat.</p>
-                <p><a href="https://traktorogmaskin.github.io/AVIF-til-JPG-generator/">Åpne modul</a></p>
-              </article>
+<ul>
 
-              <article
-                data-module="etikettstudio"
-                data-status="planlagt"
-                data-feature="etikettstudio"
-              >
-                <header>
-                  <p>Planlagt</p>
-                  <h4>Etikettstudio</h4>
-                </header>
-                <p>Modul for etiketter, strekkoder og statusmerking.</p>
-                <p>Under planlegging.</p>
-              </article>
-            </section>
+<li><a href="index.html">Startside</a></li>
 
-            <section id="kalkulatorer" aria-labelledby="kalkulatorer-title">
-              <h3 id="kalkulatorer-title">Kalkulatorer</h3>
+<li><a href="#mine-moduler">Mine moduler</a></li>
 
-              <article
-                data-module="tilhengerkalkulator"
-                data-status="stabil"
-                data-feature="tilhengerkalkulator"
-              >
-                <header>
-                  <p>Stabil</p>
-                  <h4>Tilhengerkalkulator</h4>
-                </header>
-                <p>Veiledende beregning og vurdering av tilhengerbehov.</p>
-                <p><a href="https://traktorogmaskin.github.io/tilhengerkalkulator/">Åpne modul</a></p>
-              </article>
+<li><a href="#moduloversikt">Moduloversikt</a></li>
 
-              <article
-                data-module="leasingkalkulator"
-                data-status="stabil"
-                data-feature="leasingkalkulator"
-              >
-                <header>
-                  <p>Stabil</p>
-                  <h4>Leasingkalkulator</h4>
-                </header>
-                <p>Veiledende leasingberegning med eksisterende oppsett.</p>
-                <p><a href="https://traktorogmaskin.github.io/leasingkalkulator/">Åpne modul</a></p>
-              </article>
-            </section>
+<li><a href="#dokumentverktoy">Dokumentverktøy</a></li>
 
-            <section id="oppgaver" aria-labelledby="oppgaver-title">
-              <h3 id="oppgaver-title">Oppgaver og arbeidsflyt</h3>
+<li><a href="#generatorer">Generatorer</a></li>
 
-              <article
-                data-module="oppgavelogg"
-                data-status="planlagt"
-                data-feature="oppgavelogg"
-              >
-                <header>
-                  <p>Planlagt</p>
-                  <h4>Oppgavelogg</h4>
-                </header>
-                <p>Samle, filtrere og følge opp oppgaver på tvers av moduler.</p>
-                <p>Planlagt som felles JobHub-funksjon.</p>
-              </article>
+<li><a href="#kalkulatorer">Kalkulatorer</a></li>
 
-              <article
-                data-module="mine-oppgaver"
-                data-status="planlagt"
-                data-feature="mine-oppgaver"
-              >
-                <header>
-                  <p>Planlagt</p>
-                  <h4>Mine oppgaver</h4>
-                </header>
-                <p>Visning av åpne oppgaver per bruker, kilde og frist.</p>
-                <p>Kommer senere.</p>
-              </article>
-            </section>
-          </div>
-        </section>
+<li><a href="#oppgaver">Oppgaver</a></li>
 
-        <section id="arbeidsflyt" aria-labelledby="arbeidsflyt-title">
-          <header>
-            <h2 id="arbeidsflyt-title">Arbeidsflyt</h2>
-          </header>
+<li><a href="#arbeidsflyt">Arbeidsflyt</a></li>
 
-          <ol>
-            <li>Velg riktig arbeidsområde eller modul.</li>
-            <li>Åpne verktøyet du trenger.</li>
-            <li>Utfør oppgaven i en enkel og tydelig flyt.</li>
-            <li>Lagre arbeid eller eksporter resultat.</li>
-            <li>Gå tilbake til JobHub for neste steg.</li>
-          </ol>
-        </section>
+<li><a href="#grunnprinsipper">Grunnprinsipper</a></li>
 
-        <section id="grunnprinsipper" aria-labelledby="grunnprinsipper-title">
-          <header>
-            <h2 id="grunnprinsipper-title">Grunnprinsipper</h2>
-          </header>
+</ul>
 
-          <ul>
-            <li>Enkel og naturlig bruk.</li>
-            <li>Minst mulig støy og unødvendige steg.</li>
-            <li>Lik struktur på tvers av moduler.</li>
-            <li>Systemet skal hjelpe, ikke frustrere.</li>
-            <li>Moduler skal være forståelige uten forklaring fra utvikler.</li>
-            <li>Standardisering i base, fleksibilitet i modulene.</li>
-            <li>Tydelig skille mellom stabile og kommende verktøy.</li>
-          </ul>
-        </section>
+</nav>
 
-        <section id="plattform-retning" aria-labelledby="plattform-retning-title">
-          <header>
-            <h2 id="plattform-retning-title">Videre retning</h2>
-          </header>
+<section>
 
-          <ul>
-            <li>Personlig innlogging per bruker.</li>
-            <li>Ansattliste og arbeidsområde per firma.</li>
-            <li>Aktivering av moduler per bruker eller abonnement.</li>
-            <li>Felles oppgavelogikk på tvers av moduler.</li>
-            <li>Globalt søk og hurtigvalg.</li>
-            <li>Felles meldingssystem, modaler og sidepaneler.</li>
-          </ul>
-        </section>
-      </main>
-    </div>
+<h2>Arbeidsområde</h2>
 
-    <footer id="global-footer">
-      <p>JobHub – baseplattform for praktiske arbeidsverktøy.</p>
-    </footer>
-  </div>
+<p>Standard arbeidsområde</p>
 
-  <div id="toast-root" aria-live="polite" aria-atomic="true"></div>
-  <div id="modal-root" aria-live="polite"></div>
-  <div id="drawer-root" aria-live="polite"></div>
-  <div id="command-palette-root" aria-live="polite"></div>
+<button>Bytt arbeidsområde</button>
+
+</section>
+
+<section>
+
+<h2>Status</h2>
+
+<ul>
+
+<li>Stabile moduler</li>
+
+<li>Beta / under utvikling</li>
+
+<li>Kommende moduler</li>
+
+</ul>
+
+</section>
+
+</aside>
+
+<main id="main-content">
+
+<section id="platform-intro">
+
+<header>
+
+<h2>JobHub som baseplattform</h2>
+
+<p>
+JobHub er inngangsporten til interne verktøy,
+dokumentmoduler, generatorer og kalkulatorer.
+Målet er én felles struktur som gjør det enkelt
+å forstå, enkelt å bruke og enkelt å bygge videre på.
+</p>
+
+</header>
+
+<div id="platform-intro-actions">
+
+<a href="#mine-moduler">Gå til mine moduler</a>
+
+<a href="#moduloversikt">Se moduloversikt</a>
+
+<a href="#arbeidsflyt">Se arbeidsflyt</a>
+
+</div>
+
+</section>
+
+<section id="mine-moduler">
+
+<header>
+
+<h2>Mine moduler</h2>
+
+<p>
+Dette området viser verktøy som er tilgjengelige
+i JobHub-plattformen.
+</p>
+
+</header>
+
+<div class="module-grid">
+
+<a class="module-card" href="https://traktorogmaskin.github.io/tilhengerkalkulator/">
+
+<h3>Tilhengerkalkulator</h3>
+
+<p>
+Veiledende beregning av tilhengerkapasitet
+og behov.
+</p>
+
+</a>
+
+<a class="module-card" href="https://traktorogmaskin.github.io/leasingkalkulator/">
+
+<h3>Leasingkalkulator</h3>
+
+<p>
+Beregning av leasingkostnader
+og finansiering.
+</p>
+
+</a>
+
+<a class="module-card" href="https://traktorogmaskin.github.io/PDF-til-JPG/">
+
+<h3>PDF → JPG</h3>
+
+<p>
+Konverter PDF-dokumenter til bilder.
+</p>
+
+</a>
+
+<a class="module-card" href="https://traktorogmaskin.github.io/Produktark/">
+
+<h3>Produktark</h3>
+
+<p>
+Lag produktark og brosjyrer
+i standard oppsett.
+</p>
+
+</a>
+
+<a class="module-card">
+
+<h3>Møtereferat generator</h3>
+
+<p>
+Strukturert møtereferat
+med oppgaver og beslutninger.
+</p>
+
+</a>
+
+</div>
+
+</section>
+
+<section id="arbeidsflyt">
+
+<h2>Arbeidsflyt</h2>
+
+<ol>
+
+<li>Velg riktig modul</li>
+
+<li>Utfør oppgaven i verktøyet</li>
+
+<li>Lagre eller eksporter resultat</li>
+
+<li>Fortsett til neste oppgave</li>
+
+</ol>
+
+</section>
+
+<section id="grunnprinsipper">
+
+<h2>Grunnprinsipper</h2>
+
+<ul>
+
+<li>Enkel og naturlig bruk</li>
+
+<li>Minst mulig støy</li>
+
+<li>Lik struktur i alle moduler</li>
+
+<li>Systemet skal hjelpe – ikke frustrere</li>
+
+<li>Standardisering i baseplattform</li>
+
+<li>Fleksibilitet i modulene</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>Videre retning</h2>
+
+<ul>
+
+<li>Personlig innlogging</li>
+
+<li>Arbeidsområde per firma</li>
+
+<li>Aktivering av moduler per abonnement</li>
+
+<li>Oppgavelogikk på tvers av moduler</li>
+
+<li>Globalt søk</li>
+
+<li>Varslingssystem</li>
+
+</ul>
+
+</section>
+
+</main>
+
+</div>
+
+<footer id="global-footer">
+
+<p>
+JobHub – baseplattform for praktiske arbeidsverktøy.
+</p>
+
+</footer>
+
+</div>
+
 </body>
 </html>
