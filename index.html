@@ -706,7 +706,7 @@
 
     async function loadModules() {
       try {
-        const indexResponse = await fetch('data/modules-index.json', { cache: 'no-store' });
+        const indexResponse = await fetch('data/modules-index.json?' + Date.now());
         if (!indexResponse.ok) {
           throw new Error('Kunne ikke lese modules-index.json');
         }
