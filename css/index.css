@@ -35,3 +35,22 @@ nav li {
 section {
   margin-top: 30px;
 }
+/* enkel layout */
+
+#app-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+}
+
+nav {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
